@@ -82,6 +82,8 @@ export default function LoginPage() {
           Login here
         </button>
         <Link href="/signup">visit sign page</Link>
+        <Link href="/forgotPassword" className="border-b border-4px-blue">forgot password</Link>
+ 
       </div>
     </div>
   );
