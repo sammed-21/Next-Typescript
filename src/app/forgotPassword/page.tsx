@@ -3,9 +3,7 @@
 import React, { useState } from "react";
 import Link from "next/link";
 import axios from "axios";
-import toast from "react-hot-toast";
-import Loading from "@/components/Loader";
-import { AnyAaaaRecord } from "dns";
+ 
 
 export default function ForgotPage() {
   const [buttonDisabled, setButtonDisabled] = useState(true);
