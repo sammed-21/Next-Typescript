@@ -16,8 +16,8 @@ export async function GET(request: NextRequest) {
             message: "User Found",
             data:user
         })
-    } catch (err) {
-        
+    } catch (err:any) {
+        console.log(err.message)
     }  
 
 }
