@@ -1,24 +1,47 @@
-import { getDataFromToken } from "@/helpers/getDataFromToken"
+// import { getDataFromToken } from "@/helpers/getDataFromToken"
+
+// import { NextRequest, NextResponse } from "next/server";
+
+// import User from "@/models/userModel"
+
+// import {connectToDB} from "@/dbConfig/dbConfig";
+
+// export async function GET(request: NextRequest) {
+//     try {
+//         await connectToDB();
+//         console.log("came here")
+//         const userId:any = await getDataFromToken(request);
+//         console.log(userId)
+//         const user = await User.findOne({ _id: userId }).select("-password");
+//         return NextResponse.json({
+//             message: "User Found",
+//             data:user   
+//         })
+//     } catch (err:any) {
+//         console.log(err.message)
+//     }  
+
+// }
+
+import { getDataFromToken } from "@/helpers/getDataFromToken";
 
 import { NextRequest, NextResponse } from "next/server";
+import User from "@/models/userModel";
+import { connectToDB } from "@/dbConfig/dbConfig";
 
-import User from "@/models/userModel"
+connectToDB();
 
-import {connectToDB} from "@/dbConfig/dbConfig";
+export async function GET(request:NextRequest){
 
-export async function GET(request: NextRequest) {
     try {
-        await connectToDB();
-        console.log("came here")
         const userId = await getDataFromToken(request);
-        console.log(userId)
-        const user = await User.findOne({ _id: userId }).select("-password");
+        const user = await User.findOne({_id: userId}).select("-password");
         return NextResponse.json({
-            message: "User Found",
-            data:user
+            mesaaage: "User found",
+            data: user
         })
-    } catch (err:any) {
-        console.log(err.message)
-    }  
+    } catch (error:any) {
+        return NextResponse.json({error: error.message}, {status: 400});
+    }
 
 }
